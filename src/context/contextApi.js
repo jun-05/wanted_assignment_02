@@ -1,17 +1,8 @@
-import { useState } from 'react';
-import { createContext } from 'react';
+import { useState, useCallback, createContext } from 'react';
+import axios from 'axios';
 
-export const IssueContext = createContext({
-  isLoading: false,
-  issueList: [],
-  pageNum: 0,
-  getNextPageList: () => {},
-  getPageList: pageNum => Promise.resolve(),
-  getIssueDetail: num => {},
-  inssueDetail: undefined,
-  headerTitle: '',
-  isError: false,
-});
+export const IssueContext = createContext();
+
 const GIT_ACCESSTOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 const GIT_URL = process.env.REACT_APP_GITHUB_URL;
 
@@ -29,6 +20,8 @@ const ContextProvider = ({ children }) => {
   const [issueDetail, setIssueDetail] = useState(null);
   const [isNoMore, setIsNoMore] = useState(false);
   const [isError, setIsError] = useState(false);
+  const getPageList = pageNum => Promise.resolve();
+  const getNextPageList = () => {};
 
   const getIssueDetail = useCallback(async id => {
     try {
@@ -76,7 +69,6 @@ const ContextProvider = ({ children }) => {
     getIssueDetail,
     issueDetail,
     isError,
-    getIssueDetail,
   };
 
   return <IssueContext.Provider value={value}>{children}</IssueContext.Provider>;
