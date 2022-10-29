@@ -4,12 +4,10 @@ import { getIssues, useIssuesDispatch, useIssuesState } from '../../context/Issu
 import Issue from './Issue';
 
 const IssueList = () => {
-  // const [issueId, setIssueId] = useState(null);
-  // const [issueList, setIssueList] = useState(null);
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
 
-  const { data: issues } = state.issues;
+  const { data: issues, loading, error } = state.issues;
 
   useEffect(() => {
     getIssues(dispatch);
@@ -17,9 +15,9 @@ const IssueList = () => {
     return () => {};
   }, []);
 
-  // if (loading) return <div>로딩중..</div>;
-  // if (error) return <div>에러가 발생했습니다</div>;
-  // if (!issues) return <button onClick={fetchData}>불러오기</button>;
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러가 발생했습니다</div>;
+
   return (
     <Wrapper>
       <ItemList>
