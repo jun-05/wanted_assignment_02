@@ -11,7 +11,6 @@ const IssueList = () => {
 
   useEffect(() => {
     getIssues(dispatch);
-    console.log(issues);
     return () => {};
   }, []);
 
