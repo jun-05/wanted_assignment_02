@@ -7,8 +7,7 @@ const Header = ({ organName, repoName }) => {
     <Wrapper>
       <Title to="/">
         <h1>
-          {/* {organName} / {repoName} */}
-          하이
+          {organName} / {repoName}
         </h1>
       </Title>
     </Wrapper>
@@ -20,12 +19,12 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.mainColor};
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 `;
 
 const Title = styled(Link)`
-  margin: 0px 20px;
+  margin: 1rem 2rem -1rem 2rem;
   text-decoration: none;
   font-size: 1.6rem;
   font-weight: 900;
