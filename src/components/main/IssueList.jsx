@@ -6,7 +6,6 @@ const IssueList = () => {
   return (
     <Wrapper>
       <ItemList>
-        이슈리스트
         {/* {issueList &&
           issueList.map(issue => {
             return (
