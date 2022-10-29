@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import IssueDetail from '../components/detail/IssueDetail';
 
 const Detail = () => {
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <IssueDetail />
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`

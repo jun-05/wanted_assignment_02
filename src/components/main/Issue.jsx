@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getCurDate } from '../../utils/date';
 
 const Issue = ({ issue }) => {
+  const navigate = useNavigate();
   return (
-    <Wrapper>
+    <Wrapper onClick={() => navigate(`/issue/${issue.number}`)}>
       <ContentsWrapper>
         <TitleWrapper>
           # {issue.number} {issue.title}
