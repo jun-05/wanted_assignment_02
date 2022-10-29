@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getCurDate } from '../../utils/date';
 
 const Issue = ({ issue }) => {
   return (
@@ -9,7 +10,7 @@ const Issue = ({ issue }) => {
           # {issue.number} {issue.title}
         </TitleWrapper>
         <WriterInfoWrapper>
-          작성자 : {issue.user.login}, 작성일 : {issue.created_at}
+          작성자 : {issue.user.login}, 작성일 : {getCurDate(issue.created_at)}
         </WriterInfoWrapper>
       </ContentsWrapper>
       <CommentsWrapper>코멘트: {issue.comments}</CommentsWrapper>
