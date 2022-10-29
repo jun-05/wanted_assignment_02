@@ -22,6 +22,7 @@ const ContextProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const getPageList = pageNum => Promise.resolve();
   const getNextPageList = () => {};
+  const pageNum = 0;
 
   const getIssueDetail = useCallback(async id => {
     try {
