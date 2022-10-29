@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-// import Issue from './Issue';
+import { getIssues, useIssuesDispatch, useIssuesState } from '../../context/IssuesContext';
+import Issue from './Issue';
 
 const IssueList = () => {
+  // const [issueId, setIssueId] = useState(null);
+  // const [issueList, setIssueList] = useState(null);
+  const state = useIssuesState();
+  const dispatch = useIssuesDispatch();
+
+  const { data: issues } = state.issues;
+
+  useEffect(() => {
+    getIssues(dispatch);
+    console.log(issues);
+    return () => {};
+  }, []);
+
+  // if (loading) return <div>로딩중..</div>;
+  // if (error) return <div>에러가 발생했습니다</div>;
+  // if (!issues) return <button onClick={fetchData}>불러오기</button>;
   return (
     <Wrapper>
       <ItemList>
-        {/* {issueList &&
-          issueList.map(issue => {
-            return (
-              <>
-                {issue && (
-                  <Issue
-                    issue={issue}
-                    key={issue.id}
-                  />
-                )}
-              </>
-            );
-          })} */}
+        {issues &&
+          issues.map(issue => {
+            return <>{issue && <Issue issue={issue} key={issue.id} />}</>;
+          })}
       </ItemList>
     </Wrapper>
   );
@@ -26,20 +34,20 @@ const IssueList = () => {
 
 const Wrapper = styled.div`
   background-color: rgb(255, 255, 255);
-  margin: 0px 2rem;
+  margin: 0 2rem;
   display: flex;
   flex-direction: column;
   @media (min-width: 1280px) {
     /* Desktop */
-    width: 40%;
+    width: 60rem;
   }
   @media (min-width: 768px) and (max-width: 1280px) {
     /* Tablet */
-    width: 50%;
+    width: 50rem;
   }
   @media (max-width: 767px) {
     /* Mobile */
-    width: 60%;
+    width: 40rem;
   }
 `;
 
@@ -47,11 +55,8 @@ const ItemList = styled.div`
   width: 100%;
   min-height: 18rem;
   height: 100%;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   margin-top: 0.5rem;
   column-gap: 1rem;
   row-gap: 1rem;
