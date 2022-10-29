@@ -1,5 +1,7 @@
+import './index.css';
+
 function App() {
-  return <div className="App"></div>;
+  return <div className="text-red-700">hello world</div>;
 }
 
 export default App;
