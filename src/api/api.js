@@ -6,4 +6,8 @@ export const apis = {
   get_an_issue: issue_number => {
     return instance.get(`/repos/angular/angular-cli/issues/${issue_number}`);
   },
+  post_render_markdown: text => {
+    const body = { text: text };
+    return instance.post('/markdown', body);
+  },
 };
