@@ -1,5 +1,4 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import axios from 'axios';
 import { apis } from '../api/api';
 
 const initialState = {
@@ -90,7 +89,6 @@ export function useIssuesState() {
   if (!state) {
     throw new Error('Cannot find issuesProvider');
   }
-  console.log(state);
   return state;
 }
 
@@ -113,12 +111,12 @@ export async function getIssues(dispatch) {
   }
 }
 
-export async function getUser(dispatch) {
-  dispatch({ type: 'GET_USER' });
+export async function getIssue(dispatch, issue_number) {
+  dispatch({ type: 'GET_ISSUE' });
   try {
-    const response = await axios.get_an_issue();
-    dispatch({ type: 'GET_USER_SUCCESS', data: response.data });
+    const response = await apis.get_an_issue(issue_number);
+    dispatch({ type: 'GET_ISSUE_SUCCESS', data: response.data });
   } catch (e) {
-    dispatch({ type: 'GET_USER_ERROR', error: e });
+    dispatch({ type: 'GET_ISSUE_ERROR', error: e });
   }
 }
