@@ -6,7 +6,7 @@ const PER_PAGE = '10';
 
 const githubAPI = {
   getIssueList: async page => {
-    const IssueList = client.get(
+    const response = await client.get(
       `${DEFAULT_GIT_HUB_REPOP_API}/angular/angular-cli/issues?${VIEW_TYPE}&page=${page}&per_page=${PER_PAGE}`,
       {
         headers: {
@@ -14,11 +14,10 @@ const githubAPI = {
         },
       }
     );
-
-    return IssueList;
+    return response.data;
   },
   getIssue: async issueNumber => {
-    const IssueItem = client.get(
+    const response = await client.get(
       `${DEFAULT_GIT_HUB_REPOP_API}/angular/angular-cli/issues/${issueNumber}`,
       {
         headers: {
@@ -27,7 +26,7 @@ const githubAPI = {
       }
     );
 
-    return IssueItem;
+    return response.data;
   },
 };
 
