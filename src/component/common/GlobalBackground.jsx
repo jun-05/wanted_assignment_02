@@ -6,10 +6,12 @@ const GlobalBackground = ({ children }) => {
 };
 
 const GlobalBackgroundWrapper = tw.div`
+min-w-[480px]
 w-screen 
 min-h-screen 
 h-auto 
-bg-slate-100
+bg-white 
+dark:bg-gray-800
 `;
 
 export default GlobalBackground;

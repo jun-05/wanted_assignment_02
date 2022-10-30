@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <HeaderContainer>
-        <HeaderItem>Angular / Angular-cli</HeaderItem>
+        <HeaderItem>Wanted-07-team-9 / wanted_assignment_02(june)</HeaderItem>
       </HeaderContainer>
     </HeaderWrapper>
   );
@@ -15,7 +15,7 @@ const HeaderWrapper = tw.div`
 w-full 
 h-10 
 md:h-14 
-bg-slate-200
+bg-slate-100
 `;
 const HeaderContainer = tw.div`
 flex 
