@@ -4,6 +4,7 @@ import Main from '../pages/Main';
 import Detail from '../pages/Detail';
 import NotFound from '../pages/NotFound';
 import Layout from '../components/elements/Layout';
+import Redirect from './Redirect';
 
 const Routers = () => {
   return (
@@ -14,6 +15,7 @@ const Routers = () => {
           <Route path="/issue/:issueNum" element={<Detail />} />
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="/redirect" element={<Redirect />} />
       </Routes>
     </BrowserRouter>
   );
