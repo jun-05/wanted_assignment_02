@@ -1,12 +1,12 @@
 import React, { useCallback, useRef } from 'react';
 import styled from 'styled-components';
-import AdvertItem from '../components/issues/AdvertItem';
-import Header from '../components/Header';
-import IssueItem from '../components/IssueItem';
-import LoadingSpinner from '../components/LoadingSpinner';
 import { useIssueContext } from '../contexts/IssueContext';
 import useAxios from '../hooks/useAxios';
 import { Main } from '../styles/issues';
+import Header from '../components/Header';
+import AdvertItem from '../components/issues/AdvertItem';
+import IssueItem from '../components/issues/IssueItem';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const IssuesPage = () => {
   const { issueList, setPageNum, isLoading, hasMore } = useIssueContext();
@@ -15,14 +15,20 @@ const IssuesPage = () => {
   const observer = useRef();
   const lastRef = useCallback(
     node => {
-      if (isLoading) return;
-      if (observer.current) observer.current.disconnect();
+      if (isLoading) {
+        return;
+      }
+      if (observer.current) {
+        observer.current.disconnect();
+      }
       observer.current = new IntersectionObserver(entries => {
         if (entries[0].isIntersecting && hasMore) {
           setPageNum(prev => prev + 1);
         }
       });
-      if (node) observer.current.observe(node);
+      if (node) {
+        observer.current.observe(node);
+      }
     },
     [isLoading, hasMore]
   );
@@ -32,12 +38,12 @@ const IssuesPage = () => {
       <Header />
       <Main>
         <Section>
-          {issueList.map((issue, index) =>
+          {issueList.map((issue, index) => (
             <div key={index}>
-              {(index === 4) && <AdvertItem />}
+              {index === 4 && <AdvertItem />}
               <IssueItem key={index} issue={issue} />
             </div>
-          )}
+          ))}
         </Section>
       </Main>
       {isLoading && <LoadingSpinner />}

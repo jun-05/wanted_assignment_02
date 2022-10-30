@@ -1,8 +1,8 @@
 import React from 'react';
-import { convertDate } from '../utils/convertDate';
-import { useIssueContext } from '../contexts/IssueContext';
-import { ArticleDetail } from '../styles/issues';
-import MarkdownRenderer from '../components/MarkdownRenderer';
+import { convertDate } from '../../utils/convertDate';
+import { useIssueContext } from '../../contexts/IssueContext';
+import { ArticleDetail } from '../../styles/issues';
+import MarkdownRenderer from './MarkdownRenderer';
 
 const DetailItem = ({ issue }) => {
   const { issueDetail } = useIssueContext();

@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import errorImage from '../assets/404.png';
-import errorImage_mobile from '../assets/404_mobile.png';
+import errorImage from '../../assets/404.png';
+import errorImage_mobile from '../../assets/404_mobile.png';
 
 
 const ErrorRenderer = () => {
-//  
   return (
     <DivNotfound />
   )

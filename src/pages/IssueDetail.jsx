@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IssuesService } from '../api/issues';
+import { useIssueContext } from '../contexts/IssueContext';
+import { Main } from '../styles/issues';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { useIssueContext } from '../contexts/IssueContext';
-import ErrorRenderer from '../components/ErrorRenderer';
-import { Main } from '../styles/issues';
-import DetailItem from '../components/DetailItem';
+import DetailItem from '../components/issueDetail/DetailItem';
+import ErrorRenderer from '../components/issueDetail/ErrorRenderer';
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -27,8 +27,12 @@ const DetailsPage = () => {
   };
 
   useEffect(() => {
-    if (!Object.keys(issueDetail).length) getIssueData();
-    else setIsLoading(false);
+    if (!Object.keys(issueDetail).length) {
+      getIssueData();
+    }
+    else {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
