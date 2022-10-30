@@ -1,7 +1,12 @@
 import React from 'react';
+import ErrorRender from '../components/ErrorRender';
 
 function NotFound() {
-  return <div> 잘못된 페이지 입니다. </div>;
+  return (
+    <div>
+      <ErrorRender />
+    </div>
+  );
 }
 
 export default NotFound;

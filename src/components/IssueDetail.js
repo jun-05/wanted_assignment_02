@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReactMarkdown from 'react-markdown';
+import MarkDown from './MarkDown';
 
-function IssueDetailMD({ issueDetail }) {
+function IssueDetail({ issueDetail }) {
   const year = new Date(issueDetail?.created_at).getFullYear() + '년';
   const month = new Date(issueDetail?.created_at).getMonth() + 1 + '월';
   const day = new Date(issueDetail?.created_at).getDate() + '일';
@@ -25,13 +25,13 @@ function IssueDetailMD({ issueDetail }) {
         </CommentsBox>
       </DetailTitleBox>
       <BodyMarkDown>
-        <ReactMarkdown>{issueDetail?.body}</ReactMarkdown>
+        <MarkDown markdown={issueDetail?.body} />{' '}
       </BodyMarkDown>
     </IssueDetailContainer>
   );
 }
 
-export default IssueDetailMD;
+export default IssueDetail;
 
 const IssueDetailContainer = styled.div`
   width: 100%;
@@ -39,6 +39,8 @@ const IssueDetailContainer = styled.div`
   max-width: 800px;
   margin-top: 85px;
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
 `;
 
 const DetailTitleBox = styled.div`
@@ -66,12 +68,17 @@ const DetailTitle = styled.p`
 
 const CommentsBox = styled.div`
   text-align: center;
+
   span {
     display: block;
   }
 `;
 
 const BodyMarkDown = styled.div`
+  width: 100%;
   padding: 10px;
-  font-size: 1.5rem;
+  max-width: 700px;
+  font-size: 1.2rem;
+  margin: auto;
+  overflow: hidden;
 `;
