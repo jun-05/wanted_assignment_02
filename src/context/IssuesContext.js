@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useContext } from 'react';
 import { apis } from '../api/api';
+import { errors, loadingState, success } from './contextState';
 
 const initialState = {
   issues: {
@@ -13,24 +14,6 @@ const initialState = {
     error: null,
   },
 };
-
-const loadingState = {
-  loading: true,
-  data: null,
-  error: null,
-};
-
-const success = data => ({
-  loading: false,
-  data,
-  error: null,
-});
-
-const error = error => ({
-  loading: false,
-  data: null,
-  error: error,
-});
 
 function issuesReducer(state, action) {
   switch (action.type) {
@@ -47,7 +30,7 @@ function issuesReducer(state, action) {
     case 'GET_ISSUES_ERROR':
       return {
         ...state,
-        issues: error(action.error),
+        issues: errors(action.error),
       };
     case 'GET_ISSUE':
       return {
@@ -62,18 +45,18 @@ function issuesReducer(state, action) {
     case 'GET_ISSUE_ERROR':
       return {
         ...state,
-        issue: error(action.error),
+        issue: errors(action.error),
       };
     default:
       throw new Error(`Unhanded action type: ${action.type}`);
   }
 }
 
-// State 용 Context 와 Dispatch 용 Context 따로 만들어주기
 const IssuesStateContext = createContext(null);
 const IssuesDispatchContext = createContext(null);
 
-// 위에서 선언한 두가지 Context 들의 Provider 로 감싸주는 컴포넌트
+// 두가지 Context 들의 Provider 로 감싸주는 컴포넌트
+// 최상위 컴포넌트에서 사용
 export function IssuesProvider({ children }) {
   const [state, dispatch] = useReducer(issuesReducer, initialState);
   return (

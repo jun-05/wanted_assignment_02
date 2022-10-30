@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useContext } from 'react';
 import { apis } from '../api/api';
+import { errors, loadingState, success } from './contextState';
 
 const initialState = {
   bodyTxt: {
@@ -8,24 +9,6 @@ const initialState = {
     error: null,
   },
 };
-
-const loadingState = {
-  loading: true,
-  data: null,
-  error: null,
-};
-
-const success = data => ({
-  loading: false,
-  data,
-  error: null,
-});
-
-const error = error => ({
-  loading: false,
-  data: null,
-  error: error,
-});
 
 function markdownReducer(state, action) {
   switch (action.type) {
@@ -42,7 +25,7 @@ function markdownReducer(state, action) {
     case 'POST_BODYTXT_ERROR':
       return {
         ...state,
-        bodyTxt: error(action.error),
+        bodyTxt: errors(action.error),
       };
     default:
       throw new Error(`Unhanded action type: ${action.type}`);
