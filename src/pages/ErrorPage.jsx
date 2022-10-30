@@ -1,7 +1,7 @@
-const ErrorPage = () => {
+const ErrorPage = ({ message }) => {
   return (
     <div className="fixed flex items-center justify-center w-screen h-screen text-9xl">
-      ERROR PAGE
+      {message} ERROR PAGE
     </div>
   );
 };

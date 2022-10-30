@@ -17,8 +17,9 @@ const DetailContainer = () => {
     getIssue(dispatch, issueNumber);
   }, [dispatch, issueNumber]);
 
+  if (error !== null || isNaN(issueNumber)) return <ErrorPage message={error.response.status} />;
   if (!data || loading) return <Loading />;
-  if (error || isNaN(issueNumber)) return <ErrorPage />;
+
   return <DetailView issueItem={data} loading={loading} />;
 };
 

@@ -2,7 +2,7 @@ import { asyncState } from './asyncState';
 
 export function createAsyncHandler(type, key, list = false) {
   const SUCCESS = `${type}_SUCCESS`;
-  const ERROR = `${type}_ERROR`;
+  const ERROR = `${type}_FAILURE`;
   function handler(state, action) {
     switch (action.type) {
       case type:
@@ -25,7 +25,6 @@ export function createAsyncHandler(type, key, list = false) {
             [key]: asyncState.listSuccess(state[key], action.payload),
           };
         }
-
         return {
           ...state,
           [key]: asyncState.success(action.payload),

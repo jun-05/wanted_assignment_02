@@ -30,7 +30,7 @@ export const asyncState = {
     return {
       loading: false,
       data: null,
-      error,
+      error: error,
     };
   },
 };

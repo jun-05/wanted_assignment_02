@@ -1,6 +1,6 @@
 export default function createAsyncDispatcher(type, promiseFn) {
   const SUCCESS = `${type}_SUCCESS`;
-  const ERROR = `${type}_ERROR`;
+  const ERROR = `${type}_FAILURE`;
   async function actionHandler(dispatch, ...rest) {
     dispatch({ type });
     try {
@@ -9,10 +9,10 @@ export default function createAsyncDispatcher(type, promiseFn) {
         type: SUCCESS,
         payload,
       });
-    } catch (e) {
+    } catch (error) {
       dispatch({
         type: ERROR,
-        error: e,
+        error: error,
       });
     }
   }

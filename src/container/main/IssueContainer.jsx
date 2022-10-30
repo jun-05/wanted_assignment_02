@@ -27,7 +27,7 @@ const IssueContainer = () => {
     setPage(prev => prev + 1);
   }, []);
 
-  if (error) return <ErrorPage />;
+  if (error !== null) return <ErrorPage message={error.response.status} />;
   if (!data) return <Loading />;
 
   return <IsuueList data={data} loading={loading} onChangePage={onChnagePage} />;
