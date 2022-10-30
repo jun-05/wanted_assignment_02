@@ -7,7 +7,7 @@ const GlobalBackground = ({ children }) => {
 
 const GlobalBackgroundWrapper = tw.div`
 min-w-[480px]
-w-screen 
+w-auto 
 min-h-screen 
 h-auto 
 bg-white 

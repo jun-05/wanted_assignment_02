@@ -5,7 +5,7 @@ const AdBlock = () => {
   return (
     <AdBlockBlock href="https://www.wanted.co.kr/">
       <PictureBlock>
-        <source srcset="../../img/wanted.webp" type="image/webp" />
+        <source srcSet="../../img/wanted.webp" type="image/webp" />
         <img src="../../img/wanted.png" alt="wanted" />
       </PictureBlock>
     </AdBlockBlock>
@@ -22,7 +22,8 @@ const PictureBlock = tw.picture`
 flex
 justify-center
 items-center
-mx-8
+mx-4
+md:mx-8
 mb-4
 border
 rounded-md

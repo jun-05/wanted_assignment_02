@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <LoadingBlock>
       <svg
-        className="animate-spin text-white md:h-20 md:w-20 h-10 w-10"
+        className="animate-spin text-black md:h-20 md:w-20 h-10 w-10"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -35,7 +35,6 @@ transform
 translate-x-[-50%] 
 translate-y-[-50%]
 z-50
-
 `;
 
 export default Loading;
