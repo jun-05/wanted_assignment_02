@@ -11,7 +11,7 @@ function IssueDetail({ issueDetail }) {
   return (
     <IssueDetailContainer>
       <DetailTitleBox>
-        <img src={issueDetail?.user.avatar_url} alt="" />
+        <img src={issueDetail?.user.avatar_url} alt="작성자 프로필 이미지" />
         <DetailTitle>
           {issueDetail?.title}
           <span>
