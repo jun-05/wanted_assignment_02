@@ -123,14 +123,14 @@
 
   ***
 
-1.  이슈 상세 화면
+2.  이슈 상세 화면
 
     ![스크린샷 2022-10-30 오후 7 44 18](https://user-images.githubusercontent.com/104307213/198874549-62323070-2ee9-4c12-9fff-01bec86a5eac.png)
 
     - 이슈의 상세 내용 표시
     - ‘이슈번호, 이슈제목, 작성자, 작성일, 코멘트 수, 작성자 프로필 이미지, 본문' 표시
 
-1.  공통 헤더
+3.  공통 헤더
 
     ![스크린샷 2022-10-30 오후 7 44 45](https://user-images.githubusercontent.com/104307213/198874558-d29690a5-c88d-471b-8d0c-8a0bb5bdb11b.png)
 
@@ -147,6 +147,22 @@
     ```
 
     ***
+
+4.  에러화면
+
+```
+  isError ? (
+      <ErrorMessage>
+        <SpinnerBox>
+          <img src={Spinner} alt="" />
+        </SpinnerBox>{' '}
+        서버를 확인해 주세요
+      </ErrorMessage>
+```
+
+- context api 요청시 서버의 문제가 있을때 화면 구현
+
+  ***
 
 ### 요구 사항
 
