@@ -2,7 +2,7 @@ import { client } from './client';
 
 const DEFAULT_GIT_HUB_REPOP_API = 'https://api.github.com/repos';
 const VIEW_TYPE = 'state=open&sort=comments&direction=desc';
-const PER_PAGE = '10';
+const PER_PAGE = '6';
 
 const githubAPI = {
   getIssueList: async page => {
