@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     setHeader(issueHeader);
-  }, [issueHeader]);
+  }, []);
 
   useEffect(() => {
     getPageList();
