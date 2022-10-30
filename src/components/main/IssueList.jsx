@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getIssues, useIssuesDispatch, useIssuesState } from '../../context/IssuesContext';
 import Issue from './Issue';
 
 const IssueList = () => {
+  const navigate = useNavigate();
   const state = useIssuesState();
   const dispatch = useIssuesDispatch();
 
@@ -29,13 +30,14 @@ const IssueList = () => {
               return (
                 <>
                   {
-                    <Link to={'https://www.wanted.co.kr/ '}>
-                      <AdImg
-                        src={
-                          'https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100'
-                        }
-                      />
-                    </Link>
+                    <AdImg
+                      src={
+                        'https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100'
+                      }
+                      onClick={() =>
+                        navigate('/redirect', { state: { url: 'https://www.wanted.co.kr/ ' } })
+                      }
+                    />
                   }
                 </>
               );
