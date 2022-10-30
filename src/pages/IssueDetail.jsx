@@ -2,44 +2,48 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IssuesService } from '../api/issues';
 import Header from '../components/Header';
-// import { convertDate } from '../utils/convertDate';
-// import ReactMarkdown from 'react-markdown';
-// import remarkGfm from 'remark-gfm';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { useIssueContext } from '../contexts/IssueContext';
+import ErrorRenderer from '../components/ErrorRenderer';
+import { Main } from '../styles/issues';
+import DetailItem from '../components/DetailItem';
 
 const DetailsPage = () => {
   const { id } = useParams();
-  // const { detailIssue } = useIssueContext();
-  const [issue, setIssue] = useState({});
+  const { issueDetail, setIssueDetail } = useIssueContext();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const getIssueData = async () => {
     try {
       const response = await IssuesService.getIssue(id);
-      console.log(response)
-      setIssue(response.data);
+      setIssueDetail(response.data);
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
 
   useEffect(() => {
-    getIssueData();
+    if (!Object.keys(issueDetail).length) getIssueData();
+    else setIsLoading(false);
   }, []);
-  console.log(issue);
-  // const create_date = convertDate(issue.created_at);
+
   return (
     <>
       <Header />
-      <main>
-        {/* <div>{issue.number}</div>
-        <div>{issue.title}</div>
-        <div>{issue.user.login}</div>
-        <div>{create_date}</div>
-        <div>{issue.comments}</div> */}
-          {/* <div>{issue.title}</div>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {issue.body}
-          </ReactMarkdown> */}
-      </main>
+      <Main>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : 
+          isError ? (
+            <ErrorRenderer />
+          ) : (
+            <DetailItem />
+          )}
+      </Main>
     </>
   );
 };

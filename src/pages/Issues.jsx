@@ -1,6 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import styled from 'styled-components';
-import AdvertItem from '../components/AdvertItem';
+import AdvertItem from '../components/issues/AdvertItem';
 import Header from '../components/Header';
 import IssueItem from '../components/IssueItem';
 import LoadingSpinner from '../components/LoadingSpinner';

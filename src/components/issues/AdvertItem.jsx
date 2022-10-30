@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ArticleCommon } from '../styles/common';
+import { ArticleCommon } from '../../styles/common';
 // import styled, { keyframes } from 'styled-components';
 // import { useIssueContext } from '../contexts/IssueContext';
 

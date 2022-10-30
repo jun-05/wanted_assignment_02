@@ -4,6 +4,7 @@ import { useIssueContext } from '../contexts/IssueContext';
 
 const useAxios = () => {
   const { setIssueList, pageNum, setIsLoading, setHasMore } = useIssueContext();
+  // const parsingData = ({number, title, user: {login}, created_at, comments}) => ({number, title, login, created_at, comments});
 
   const getIssues = useCallback(async () => {
     try {

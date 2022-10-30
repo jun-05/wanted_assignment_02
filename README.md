@@ -30,7 +30,7 @@ wanted_assignment_02 % npm install
 wanted_assignment_02 % npm start
 
 # Build
-wanted_assignment_01 % npm build
+wanted_assignment_02 % npm build
 ```
 
 ## commit msg 규칙

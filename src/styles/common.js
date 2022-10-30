@@ -37,20 +37,70 @@ export const GlobalStyles = createGlobalStyle`
 export const CommonStyle = css`
   width: 80%;
   margin: 0 auto;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-  // padding-bottom: 10%;
-
-  // h1 {
-  //   text-align: center;
-  //   font-size: 1.5em;
-  // }
 s`;
 
 export const ArticleCommon = css`
   padding: 0.8em 1em;
-  margin: 0.5em 0;
+  @media (max-width: 720px) {
+    padding: 0.6em 0;
+  }
   border-bottom: 1px solid #a8a8a8;
+  box-sizing: border-box;
+`;
+
+export const ArticleIssue = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  ${ArticleCommon}
+  
+  div.contents {
+    width: 80%;
+    div {
+      padding: 0.5em 0;
+    }
+    p {
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 1em;
+    }
+    .title p {
+      @media (max-width: 720px) {
+        font-size: 0.9em;
+      }
+    }
+    .info p {
+      @media (max-width: 720px) {
+        font-size: 0.75em;
+      }
+    }
+    .info span {
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 720px) {
+    div.contents {
+      width: 65%;
+    }
+    div.comment {
+      span {
+        font-size: 0.7em;
+      }
+    }
+  }
+
+  img {
+    width: 100px;
+
+    @media (max-width: 720px) {
+      width: 50px;
+    }
+  }
+`;
+
+export const ArticleCursor = css`
+  cursor: pointer;
 `;
