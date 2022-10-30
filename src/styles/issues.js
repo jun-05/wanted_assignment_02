@@ -18,3 +18,14 @@ export const Article = styled.article`
 export const ArticleDetail = styled.article`
   ${ArticleIssue}
 `;
+
+export const DivAvatar = styled.div`
+  width: 70px;
+  height: 70px;
+
+  img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+  }
+`

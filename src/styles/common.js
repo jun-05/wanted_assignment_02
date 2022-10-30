@@ -81,6 +81,10 @@ export const ArticleIssue = css`
     }
   }
 
+  div.comment {
+    text-align: center;
+  }
+
   @media (max-width: 720px) {
     div.contents {
       width: 65%;

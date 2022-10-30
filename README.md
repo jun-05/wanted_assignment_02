@@ -54,4 +54,4 @@ wanted_assignment_02 % npm build
 💡 ci : CI관련 설정 수정에 대한 커밋
 
 ## 작업 내용
-### 1. ---
+[Wanted Team 9 Assignments 2 작업 내용](https://github.com/Wanted-07-team-9/wanted_assignment_02/discussions/9)

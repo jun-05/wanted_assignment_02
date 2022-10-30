@@ -1,33 +1,31 @@
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import styled from "styled-components";
-import { useIssueContext } from "../../contexts/IssueContext";
-
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import styled from 'styled-components';
+import { useIssueContext } from '../../contexts/IssueContext';
 
 const MarkdownRenderer = () => {
   const { issueDetail } = useIssueContext();
 
-  const CodeBlock = (props) => {
-    return (
+  const CodeBlock = props => {
+    return props.inline ? (
+      <Span>
+        <code>{props.children}</code>
+      </Span>
+    ) : (
       <Pre>
-        <code>
-          {props.children}
-        </code>
+        <code>{props.children}</code>
       </Pre>
-    ) 
-  }
+    );
+  };
   return (
     <DivMarkdown>
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        components={{ code: CodeBlock }}
-      >
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlock }}>
         {issueDetail.body}
       </ReactMarkdown>
     </DivMarkdown>
   );
-}
+};
 
 const DivMarkdown = styled.div`
   @media (max-width: 720px) {
@@ -36,7 +34,7 @@ const DivMarkdown = styled.div`
 `;
 
 const Pre = styled.pre`
-  background-color: #e5eaee;
+  background-color: #d3d6d9;
   padding: 2rem;
   line-height: 1.5rem;
   margin: 2rem auto;
@@ -45,10 +43,11 @@ const Pre = styled.pre`
   @media (max-width: 720px) {
     padding: 0.5rem;
   }
-
-  code {
-
-  }
+`;
+const Span = styled.span`
+  background-color: #e5eaee;
+  line-height: 1.5rem;
+  white-space: pre-wrap;
 `;
 
 export default MarkdownRenderer;
