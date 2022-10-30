@@ -23,11 +23,6 @@ export const IssueTitle = styled.div`
 export const IssueListUserName = styled.div`
   color: purple;
 `;
-export const UserAvaterImg = styled.img`
-  width: 4em;
-  height: 4em;
-  margin: auto 0;
-`;
 
 export const CreatedAt = styled.div``;
 export const CommentCounter = styled.div`
@@ -36,10 +31,14 @@ export const CommentCounter = styled.div`
 `;
 
 //DetailPage Components
-
-export const IssueNum = styled.div``;
-export const Issuetitle = styled.div``;
-export const DetailPageUserName = styled.div``;
-export const Comments = styled.div``;
-export const UserProfileImg = styled.div``;
-export const Contents = styled.div``;
+export const UserAvaterImg = styled.img`
+  width: 4em;
+  height: 4em;
+  margin: auto 0;
+`;
+// ErrorPage Components
+export const ErrorComponent = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 13em;
+`;

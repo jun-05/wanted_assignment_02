@@ -1,9 +1,7 @@
 import * as Styled from './style';
 import { useNavigate } from 'react-router-dom';
-// import ReactMarkdown from 'react-markdown';
 
 const IssueList = props => {
-  // const markdown = props.contents;
   const navigate = useNavigate();
   const onChangePage = () => {
     navigate(`/detail/${props.number}`);
@@ -11,7 +9,6 @@ const IssueList = props => {
   return (
     <>
       <Styled.ItemContainer onClick={onChangePage}>
-        <Styled.UserAvaterImg src={`${props.user.avatar_url}`} alt="avatar" />
         <Styled.ItemDetails>
           <Styled.IssueContainerHeader>
             <>#{props.number}</>
