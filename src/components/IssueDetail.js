@@ -15,7 +15,7 @@ function IssueDetail({ issueDetail }) {
         <DetailTitle>
           {issueDetail?.title}
           <span>
-            작성자: {issueDetail?.name} 작성일: {date}
+            작성자: {issueDetail?.user.login} 작성일: {date}
           </span>
         </DetailTitle>
         <CommentsBox>
