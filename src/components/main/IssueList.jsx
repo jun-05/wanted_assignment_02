@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { getIssues, useIssuesDispatch, useIssuesState } from '../../context/IssuesContext';
 import Issue from './Issue';
@@ -21,8 +22,24 @@ const IssueList = () => {
     <Wrapper>
       <ItemList>
         {issues &&
-          issues.map(issue => {
-            return <>{issue && <Issue issue={issue} key={issue.id} />}</>;
+          issues.map((issue, idx) => {
+            if (idx + 1 !== 5) {
+              return <>{issue && <Issue issue={issue} key={issue.id} />}</>;
+            } else {
+              return (
+                <>
+                  {
+                    <Link to={'https://www.wanted.co.kr/ '}>
+                      <AdImg
+                        src={
+                          'https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100'
+                        }
+                      />
+                    </Link>
+                  }
+                </>
+              );
+            }
           })}
       </ItemList>
     </Wrapper>
@@ -58,6 +75,14 @@ const ItemList = styled.div`
   column-gap: 1rem;
   row-gap: 1rem;
   margin-bottom: 1rem;
+`;
+
+const AdImg = styled.img`
+  margin: 0 auto;
+  cursor: pointer;
+  width: 90%;
+  height: 5rem;
+  object-fit: contain;
 `;
 
 export default IssueList;
