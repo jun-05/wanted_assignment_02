@@ -1,27 +1,18 @@
 import { createGlobalStyle, css } from 'styled-components';
-import reset from 'styled-reset';
 
 export const GlobalStyles = createGlobalStyle`
-  ${reset}
   * {
-    margin:0;
-    padding: 0;
     box-sizing: border-box;
     font-family: 'Nanum Gothic';
   }
-  html, body, div#root {
+  div#root {
     height: 100%;
   }
   body {
-    font-size: 1rem;
-    line-height: 1.6;
     background: #fafafa;
   }
-  button {
-    cursor: pointer;
-  }
-  button:disabled {
-    cursor: default;
+  p {
+    margin: 0;
   }
   @font-face {
     font-family: 'Nanum Gothic';
@@ -44,39 +35,22 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const CommonStyle = css`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 10%;
+  width: 80%;
+  margin: 0 auto;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // padding-bottom: 10%;
 
-  h1 {
-    text-align: center;
-    font-size: 1.5em;
-  }
-`;
+  // h1 {
+  //   text-align: center;
+  //   font-size: 1.5em;
+  // }
+s`;
 
-export const FormStyle = css`
-  h1 {
-    margin-bottom: 2rem;
-  }
-  form {
-    width: 350px;
-    margin: 0 auto;
-    border: 1px solid #ddd;
-    padding: 2rem;
-    background: #ffffff;
-  }
-  button[type='submit'] {
-    background: #69d2e7;
-    border: 1px solid #ddd;
-    color: #ffffff;
-    padding: 10px;
-    width: 100%;
-  }
-  button:disabled {
-    background: #e0e0e0;
-    color: #aaa;
-  }
+export const ArticleCommon = css`
+  padding: 0.8em 1em;
+  margin: 0.5em 0;
+  border-bottom: 1px solid #a8a8a8;
 `;

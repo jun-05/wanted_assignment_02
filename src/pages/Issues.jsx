@@ -1,49 +1,55 @@
-import React, { useRef, useState } from 'react';
-import { useEffect } from 'react';
-import { IssuesService } from '../api/issues';
+import React, { useCallback, useRef } from 'react';
+import styled from 'styled-components';
+import AdvertItem from '../components/AdvertItem';
+import Header from '../components/Header';
+import IssueItem from '../components/IssueItem';
+import LoadingSpinner from '../components/LoadingSpinner';
+import { useIssueContext } from '../contexts/IssueContext';
+import useAxios from '../hooks/useAxios';
+import { Main } from '../styles/issues';
 
 const IssuesPage = () => {
-  let page = 1;
-  const [issueList, setIssueList] = useState([]);
-  const preventRef = useRef(true);
-  const obsRef = useRef(null);
+  const { issueList, setPageNum, isLoading, hasMore } = useIssueContext();
+  useAxios();
 
-  const getIssues = async (per_page) => {
-    try {
-      const response = await IssuesService.get(per_page, page);
-      setIssueList(prev => [...prev, ...response.data]);
-      preventRef.current = true;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getIssues(10);
-    const observer = new IntersectionObserver(obsHandler, { threshold: 0.5 });
-    if (obsRef.current) observer.observe(obsRef.current);
-    return () => {
-      observer.disconnect();
-    };
-  });
-
-  const obsHandler = entries => {
-    const target = entries[0];
-    if (target.isIntersecting && preventRef.current) {
-      preventRef.current = false;
-      page = page + 1;
-      getIssues(2);
-    }
-  };
+  const observer = useRef();
+  const lastRef = useCallback(
+    node => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNum(prev => prev + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [isLoading, hasMore]
+  );
 
   return (
-    <main>
-      {issueList.map((issue, index) => (
-        <div>{issue.title}</div>
-      ))}
-      <div ref={obsRef}></div>
-    </main>
+    <>
+      <Header />
+      <Main>
+        <Section>
+          {issueList.map((issue, index) =>
+            <div key={index}>
+              {(index === 4) && <AdvertItem />}
+              <IssueItem key={index} issue={issue} />
+            </div>
+          )}
+        </Section>
+      </Main>
+      {isLoading && <LoadingSpinner />}
+      <div ref={lastRef}></div>
+    </>
   );
 };
+
+const Section = styled.section`
+  height: 100%;
+  width: 100%;
+  padding: 0.5em;
+`;
 
 export default IssuesPage;

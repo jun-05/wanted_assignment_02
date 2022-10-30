@@ -1,10 +1,13 @@
-import { instance } from '../utils/axios';
+import Request from '../utils/axios';
 
 export const IssuesService = {
-  get: (per_page, page) => {
+  getIssueList: (page) => {
     const config = {
-      params: { sort: 'comments', per_page, page }
+      params: { sort: 'comments', per_page: 10, page }
     };
-    return instance.get('/repos/angular/angular-cli/issues', config);
+    return Request.get('/repos/angular/angular-cli/issues', config);
+  },
+  getIssue: (issue_num) => {
+    return Request.get(`/repos/angular/angular-cli/issues/${issue_num}`);
   },
 };
