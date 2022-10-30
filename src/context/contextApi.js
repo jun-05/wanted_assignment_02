@@ -1,13 +1,25 @@
 import { useState, useCallback, createContext } from 'react';
 import axios from 'axios';
 
-export const IssueContext = createContext();
+export const IssueContext = createContext({
+  isLoading: false,
+  getPageList: () => Promise.resolve(),
+  nextPageList: () => {},
+  issueList: [],
+  getIssueDetail: id => {},
+  issueDetail: undefined,
+  page: 0,
+  headerTitle: '',
+  setHeader: () => {},
+  isNoMore: false,
+  isError: false,
+});
 
 const GIT_ACCESSTOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 const GIT_URL = process.env.REACT_APP_GITHUB_URL;
 
 const instance = axios.create({
-  baseUrl: GIT_URL,
+  baseURL: GIT_URL,
   headers: {
     Authorization: `Bearer ${GIT_ACCESSTOKEN}`,
   },
@@ -20,11 +32,18 @@ const ContextProvider = ({ children }) => {
   const [issueDetail, setIssueDetail] = useState(null);
   const [isNoMore, setIsNoMore] = useState(false);
   const [isError, setIsError] = useState(false);
-  const getPageList = pageNum => Promise.resolve();
-  const getNextPageList = () => {};
-  const pageNum = 0;
+  const [headerTitle, setHeaderTitle] = useState('');
+
+  const setHeader = useCallback(async issueHeader => {
+    try {
+      setHeaderTitle(issueHeader);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   const getIssueDetail = useCallback(async id => {
+    console.log(id);
     try {
       setIsLoading(true);
       const response = await instance.get(`/issues/${id}`);
@@ -39,37 +58,41 @@ const ContextProvider = ({ children }) => {
 
   const nextPageList = () => {
     if (!isNoMore) {
-      getPageList(pageNum + 1);
-      setPage(pageNum + 1);
+      getPageList(page + 1);
+      setPage(page + 1);
     }
   };
 
-  const getListPageNum = useCallback(async pageNum => {
-    try {
-      setIsLoading(true);
-      const response = await instance.get(`/issues?sort=comments&page=${pageNum}`);
-      if (response.data.length === 0) {
-        setIsNoMore(true);
+  const getPageList = useCallback(
+    async pageNumber => {
+      try {
+        setIsLoading(true);
+        const response = await instance.get(`/issues?sort=comments&page=${pageNumber}`);
+        setIssueList(prev => [...prev, ...response.data]);
+        if (response.data.length === 0) {
+          setIsNoMore(true);
+        }
+      } catch (err) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
-      setIssueList(prev => [...prev, ...response.data]);
-    } catch (err) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+    },
+    [setIssueList]
+  );
 
   const value = {
     isLoading,
     issueList,
     page,
-    getNextPageList,
-    getListPageNum,
     getPageList,
     nextPageList,
     getIssueDetail,
     issueDetail,
+    isNoMore,
     isError,
+    setHeader,
+    headerTitle,
   };
 
   return <IssueContext.Provider value={value}>{children}</IssueContext.Provider>;
