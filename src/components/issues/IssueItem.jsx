@@ -11,7 +11,7 @@ const IssueItem = ({ issue }) => {
   const create_date = convertDate(issue.created_at);
   const onIssueClick = () => {
     setIssueDetail(issue);
-    navigate(`/${issue.number}`);
+    navigate(`/issues/${issue.number}`);
   };
 
   return (

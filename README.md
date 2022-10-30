@@ -4,6 +4,11 @@
 ## **Description**
 특정 깃헙 레파지토리()의 이슈 목록과 상세 내용을 확인하는 웹 사이트 구축
 
+## **Demo Page**
+[Demo Page](https://tirhande.github.io/wanted_assignment_02/#/issues)
+<p align="center">
+<img width="800" alt="main" src="https://user-images.githubusercontent.com/74575497/198878851-a1b5b526-f711-4cad-a4e0-dc0edff58f0e.png">
+</p>
 
 ## **Getting Started**
 ## Installation
