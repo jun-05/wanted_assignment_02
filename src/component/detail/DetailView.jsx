@@ -9,7 +9,7 @@ const DetailView = ({ issueItem, Loading }) => {
 
   return (
     <DetailWrapper>
-      <div className="flex flex-col  items-end text-2xl mt-10 w-[578px] pb-4 border-b-2">
+      <div className="flex flex-col  items-end text-2xl mt-10 sm:w-[578px] w-screen pb-4 border-b-2">
         <div>
           #{number} <b>TITLE: </b>
           {title}
@@ -27,7 +27,7 @@ const DetailView = ({ issueItem, Loading }) => {
         </div>
       </div>
 
-      <article className="prose prose-stone">
+      <article className="prose prose-stone sm:w-[578px] w-screen">
         {<div dangerouslySetInnerHTML={{ __html: markdown }}></div>}
       </article>
     </DetailWrapper>

@@ -6,7 +6,7 @@ const GlobalBackground = ({ children }) => {
 };
 
 const GlobalBackgroundWrapper = tw.div`
-min-w-[480px]
+min-w-[375px]
 w-auto 
 min-h-screen 
 h-auto 
