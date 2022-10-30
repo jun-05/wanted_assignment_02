@@ -6,10 +6,10 @@ export const initialState = {
   issue: asyncState.initial,
 };
 
-const issuesHandler = createAsyncHandler('GET_ISSUES', 'issues');
+const issuesHandler = createAsyncHandler('GET_ISSUES', 'issues', true);
 const issueHandler = createAsyncHandler('GET_ISSUE', 'issue');
 
-export function issueReducer(state = initialState, action) {
+export function issueReducer(state, action) {
   switch (action.type) {
     case 'GET_ISSUES':
     case 'GET_ISSUES_SUCCESS':
@@ -20,6 +20,6 @@ export function issueReducer(state = initialState, action) {
     case 'GET_ISSUE_FAILURE':
       return issueHandler(state, action);
     default:
-      throw new Error('지원되지 않는 타입입니다.');
+      throw new Error(`지원되지 않는 ${action}타입입니다.`);
   }
 }
