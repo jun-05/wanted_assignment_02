@@ -36,10 +36,10 @@ const IsuueList = ({ data, loading, onChangePage }) => {
       {loading && <Loading />}
       {data?.map((issueItem, index) =>
         (index + 1) % 5 === 0 ? (
-          <>
+          <div key={index}>
             <AdBlock key={`ad_${index}`} />
             <IssueCard issueItem={issueItem} key={`issue_${index}`} />
-          </>
+          </div>
         ) : (
           <IssueCard issueItem={issueItem} key={`issue_${index}`} />
         )
