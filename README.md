@@ -135,7 +135,16 @@
     ![스크린샷 2022-10-30 오후 7 44 45](https://user-images.githubusercontent.com/104307213/198874558-d29690a5-c88d-471b-8d0c-8a0bb5bdb11b.png)
 
     - 두 페이지는 공통 헤더를 공유합니다.
-    - 헤더에는 Organization Name / Repository Name이 표시됩니다.
+    - 헤더에는 Organization Name / Repository Name이 표시됩니다.(요청한 데이터의 주소의 유저/레포지토리를 context api 헤더 상태 함수에 저장 )
+
+    ```
+      const issueHeader = issueList[0]?.repository_url.split('https://api.github.com/repos/').join('');
+
+       useEffect(() => {
+    setHeader(issueHeader);
+    }, [issueHeader]);
+
+    ```
 
     ***
 
