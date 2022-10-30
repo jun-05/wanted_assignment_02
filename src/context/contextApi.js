@@ -32,24 +32,23 @@ const ContextProvider = ({ children }) => {
   const [issueDetail, setIssueDetail] = useState(null);
   const [isNoMore, setIsNoMore] = useState(false);
   const [isError, setIsError] = useState(false);
+
   const [headerTitle, setHeaderTitle] = useState('');
 
   const setHeader = useCallback(async issueHeader => {
     try {
       setHeaderTitle(issueHeader);
     } catch (err) {
-      console.log(err);
+      setIsError(true);
     }
   }, []);
 
   const getIssueDetail = useCallback(async id => {
-    console.log(id);
     try {
       setIsLoading(true);
       const response = await instance.get(`/issues/${id}`);
       setIssueDetail(response.data);
     } catch (err) {
-      console.log(err);
       setIsError(true);
     } finally {
       setIsLoading(false);
@@ -63,23 +62,20 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const getPageList = useCallback(
-    async pageNumber => {
-      try {
-        setIsLoading(true);
-        const response = await instance.get(`/issues?sort=comments&page=${pageNumber}`);
-        setIssueList(prev => [...prev, ...response.data]);
-        if (response.data.length === 0) {
-          setIsNoMore(true);
-        }
-      } catch (err) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
+  const getPageList = useCallback(async pageNumber => {
+    try {
+      setIsLoading(true);
+      const response = await instance.get(`/issues?sort=comments&page=${pageNumber}`);
+      if (response.data.length === 0) {
+        setIsNoMore(true);
       }
-    },
-    [setIssueList]
-  );
+      setIssueList(prev => [...prev, ...response.data]);
+    } catch (err) {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   const value = {
     isLoading,

@@ -58,4 +58,5 @@ const UserInfo = styled.p`
 const Comments = styled.div`
   text-align: center;
   width: 10%;
+  margin-right: 10px;
 `;
