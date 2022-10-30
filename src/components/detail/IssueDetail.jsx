@@ -31,10 +31,11 @@ const IssueDetail = () => {
               # {issueNum} {issue.title}
             </TitleWrapper>
             <WriterInfoWrapper>
-              작성자 : {issue.user.login}, 작성일 : {getCurDate(issue.created_at)}
+              작성자 : {issue.user.login}, 작성일 : {getCurDate(issue.created_at)}, 코멘트:{' '}
+              {issue.comments}
             </WriterInfoWrapper>
           </ContentsWrapper>
-          <CommentsWrapper>코멘트: {issue.comments}</CommentsWrapper>
+          <CommentsWrapper></CommentsWrapper>
         </InfoWrapper>
         <IssueBody body={issue.body} />
       </Wrapper>
@@ -46,6 +47,8 @@ const Wrapper = styled.div`
   margin: 0 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 45rem;
   @media (min-width: 1280px) {
     /* Desktop */
@@ -57,7 +60,7 @@ const Wrapper = styled.div`
   }
   @media (max-width: 767px) {
     /* Mobile */
-    width: 40rem;
+    width: 45rem;
   }
 `;
 
@@ -67,6 +70,9 @@ const InfoWrapper = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.gray};
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
 
 const ContentsWrapper = styled.div`
@@ -75,37 +81,17 @@ const ContentsWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 1.5rem 0.5rem 0rem 0.5rem;
-  @media (min-width: 1280px) {
-    /* Desktop */
-    width: 50rem;
-  }
-  @media (min-width: 768px) and (max-width: 1280px) {
-    /* Tablet */
-    width: 31rem;
-  }
-  @media (max-width: 767px) {
-    /* Mobile */
-    width: 28rem;
-  }
+  width: 100%;
 `;
 
-const TitleWrapper = styled.div`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+const TitleWrapper = styled.div``;
 
-const WriterInfoWrapper = styled.p`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+const WriterInfoWrapper = styled.p``;
 
 const CommentsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
 `;
 
 const UserProfile = styled.div`
