@@ -1,10 +1,10 @@
 import React from 'react';
-import ContentContainer from './../container/main/ContentContainer';
+import IssueContainer from '../container/main/IssueContainer';
 
 const MainPage = () => {
   return (
     <>
-      <ContentContainer />
+      <IssueContainer />
     </>
   );
 };
