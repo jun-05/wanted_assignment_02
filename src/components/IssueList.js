@@ -55,8 +55,8 @@ function IssueList() {
             return (
               <IssueListMap key={index}>
                 {index === 4 && (
-                  <AdLink href="https://www.wanted.co.kr/">
-                    <img src={Wanted} alt="" />
+                  <AdLink href="https://www.wanted.co.kr" target="_blank" rel="noreferrer">
+                    <img src={Wanted} alt="원티드 로고 이미지" />
                   </AdLink>
                 )}
                 <IssueItem issue={issue} />
