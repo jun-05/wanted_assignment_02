@@ -6,11 +6,9 @@ import { IssueProvider } from './context/IssueContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <IssueProvider>
-        <App />
-      </IssueProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <IssueProvider>
+      <App />
+    </IssueProvider>
+  </BrowserRouter>
 );
