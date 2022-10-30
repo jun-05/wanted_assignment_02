@@ -12,10 +12,8 @@ const AdBlock = () => {
   );
 };
 const AdBlockBlock = tw.a`
-
 h-full 
 w-full
-
 `;
 
 const PictureBlock = tw.picture`

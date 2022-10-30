@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <HeaderContainer>
-        <HeaderItem>Wanted-07-team-9 / wanted_assignment_02(june)</HeaderItem>
+        <HeaderItem>Angular/Angular-cli</HeaderItem>
       </HeaderContainer>
     </HeaderWrapper>
   );
