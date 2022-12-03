@@ -24,8 +24,6 @@ http://wanted-pre-onboarding-june.s3-website.ap-northeast-2.amazonaws.com/
 
 ## commit msg 규칙
 
-### 1. 커밋 유형 지정하기
-
 ⭐ feat : 새로운 기능에 대한 커밋
 
 🛠 fix : 버그 수정에 대한 커밋
